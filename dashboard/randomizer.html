@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	body {
+		background-color: #2F3A4F;
+	}
+	
+	label{
+		font-family: "Helvetica Neue";
+		font-weight: bold;
+		color:white;
+		margin: 5px;
+	}
+	
+	#results{
+		color:white;
+		font-family: "Helvetica Neue";
+	}
+	</style>
+</head>
+<body>
+	<label>Level Name:</label>
+	<input id="levelName" type="text"></input>
+	<br>
+	<label>Creator:</label>
+	<input id="creator" type="text"></input>
+	<br>
+	<label>Level Code:</label>
+	<input id="levelCode" type="text"></input>
+	<br>
+	<button id="storeButton">Store</button>
+	<button id="randomButton">Random</button>
+	<br>
+	<br>
+	<div id="results"></div>
+</body>
+
+<script>
+	const levelName = document.querySelector('#levelName');
+	const creator = document.querySelector('#creator');
+	const levelCode = document.querySelector('#levelCode');
+	
+	const storeButton = document.querySelector('#storeButton');
+	const levelNameReplicant = nodecg.Replicant('levelName');
+	const creatorReplicant = nodecg.Replicant('creator');
+	const levelCodeReplicant = nodecg.Replicant('levelCode');
+	
+	function mario(name, author, code){
+	}
+	
+	var arr = [];
+	levelNameReplicant.on('change', (newValue, oldValue) => {
+		// The value of the Replicant has changed somewhere in NodeCG,
+		// this could be another dashboard panel, a server initiated change,
+		// or the doing of another user accessing your dashboard panel.
+		levelName.value = newValue;
+	});
+	
+	creatorReplicant.on('change', (newValue, oldValue) => {
+		creator.value = newValue;
+	});
+
+	levelCodeReplicant.on('change', (newValue2, oldValue2) => {
+		levelCode.value = newValue2;
+	});
+	
+	storeButton.onclick = () => {
+		// A Replicant can be modified by modifying its `value`.
+		arr.push(levelName.value, creator.value, levelCode.value);
+		results.innerHTML = arr.toString();
+	};
+	
+	randomButton.onclick = () => {
+		var temp = Math.floor(Math.random() * (arr.length / 3));
+		levelNameReplicant.value = arr[3*temp];
+		creatorReplicant.value = arr[3*temp+1];
+		levelCodeReplicant.value = arr[3*temp+2];
+	}
+</script>
+</html>

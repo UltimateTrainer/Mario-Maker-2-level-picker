@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.2/gsap.min.js"></script>
+<head>
+	<style text="text/CSS">
+		@font-face {
+			src: url('fonts/super-mario-maker-extended.ttf');
+			font-family: "Mario";
+			src: url('fonts/Alfabetica.ttf');
+			font-family: "Alfabetica"
+		}
+		
+		body {
+			width: 1920px;
+			height: 1080px;
+			background: transparent;
+			padding: 0px;
+			margin: 0px;
+			font-family: "Alfabetica";
+			color: black;
+			overflow: hidden;
+		}
+		#levelCode{
+			position: absolute;
+			width: 485px;
+			height: 50px;
+			font-size: 50px;
+			color: #b07d00;
+			text-transform: uppercase;
+		}
+	</style>
+</head>
+<body>
+	<span id="levelCode"></span>
+</body>
+
+<script>
+	const levelCodeReplicant = nodecg.Replicant('levelCode');
+	
+	var code = $('#levelCode');
+	
+	levelCodeReplicant.on('change', (newValue, oldValue) => {
+		TweenMax.to(code,.5,{css:{opacity: 0},ease:Quad.easeOut,delay:0,onComplete:function(){
+		levelCode.innerText = `${newValue}`;
+	TweenMax.to(code,.5,{css:{opacity: 1},ease:Quad.easeOut,delay:0}); 
+	}
+	
+	})});
+	
+	
+</script>
+</html>

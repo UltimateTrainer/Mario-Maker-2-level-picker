@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.2/gsap.min.js"></script>
+<head>
+	<style text="text/CSS">
+		@font-face {
+			src: url('fonts/super-mario-maker-extended.ttf');
+			font-family: "Mario";
+			src: url('fonts/Alfabetica.ttf');
+			font-family: "Alfabetica"
+		}
+		
+		body {
+			width: 1920px;
+			height: 1080px;
+			background: transparent;
+			padding: 0px;
+			margin: 0px;
+			font-family: "Alfabetica";
+			color: black;
+			overflow: hidden;
+		}
+		
+		#creator{
+			position: absolute;
+			width: 485px;
+			height: 50px;
+			font-size: 50px;
+			color: #b07d00;
+		}
+	</style>
+</head>
+<body>
+	<span id="creator"></span>
+</body>
+
+<script>
+	const creatorReplicant = nodecg.Replicant('creator');
+	
+	var create = $('#creator');
+	
+	creatorReplicant.on('change', (newValue, oldValue) => {
+		TweenMax.to(creator,.5,{css:{opacity: 0},ease:Quad.easeOut,delay:0,onComplete:function(){
+		creator.innerText = `${newValue}`;
+		TweenMax.to(create,.5,{css:{opacity: 1},ease:Quad.easeOut,delay:0}); 
+	}
+	
+	})});
+</script>
+</html>

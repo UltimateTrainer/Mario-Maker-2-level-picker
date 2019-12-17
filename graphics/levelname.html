@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.2/gsap.min.js"></script>
+<head>
+	<style text="text/CSS">
+		@font-face {
+			src: url('fonts/super-mario-maker-extended.ttf');
+			font-family: "Mario";
+			src: url('fonts/Alfabetica.ttf');
+			font-family: "Alfabetica"
+		}
+		
+		body {
+			width: 1920px;
+			height: 1080px;
+			background: transparent;
+			padding: 0px;
+			margin: 0px;
+			font-family: "Alfabetica";
+			color: black;
+			overflow: hidden;
+		}
+		
+		#levelName{
+			width: 1726px;
+			height: 60px;
+			font-size: 60px;
+			color: #5c1d0e;
+		}
+		
+	</style>
+</head>
+<body>
+	<span id="levelName"></span>
+</body>
+
+<script>
+	const levelNameReplicant = nodecg.Replicant('levelName');
+	
+	var lvlName = $('#levelName');
+	
+	levelNameReplicant.on('change', (newValue, oldValue) => {
+		// The value of the Replicant has changed somewhere in NodeCG,
+		// this could be another dashboard panel, a server initiated change,
+		// or the doing of another user accessing your dashboard panel.
+		TweenMax.to(lvlName,.5,{css:{opacity: 0},ease:Quad.easeOut,delay:0,onComplete:function(){
+		levelName.innerText = `${newValue}`;
+		TweenMax.to(lvlName,.5,{css:{opacity: 1},ease:Quad.easeOut,delay:0}); 
+	}
+	
+	})});
+	
+</script>
+</html>

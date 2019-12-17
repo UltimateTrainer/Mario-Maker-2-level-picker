@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	body {
+		background-color: #2F3A4F;
+	}
+	label{
+		font-family: "Helvetica Neue";
+		font-weight: bold;
+		color:white;
+		margin: 5px;
+	}
+	
+	</style>
+</head>
+<body>
+	<label>Level Name:</label>
+	<br>
+	<input id="levelName" type="text"></input>
+	<br>
+	<label>Creator:</label>
+	<br>
+	<input id="creator" type="text"></input>
+	<br>
+	<label>Level Code:</label>
+	<br>
+	<input id="levelCode" type="text"></input>
+	<br>
+	<button id="submitButton">Update</button>
+</body>
+
+<script>
+	const levelName = document.querySelector('#levelName');
+	const creator = document.querySelector('#creator');
+	const levelCode = document.querySelector('#levelCode');
+	
+	const submitButton = document.querySelector('#submitButton');
+	const levelNameReplicant = nodecg.Replicant('levelName');
+	const creatorReplicant = nodecg.Replicant('creator');
+	const levelCodeReplicant = nodecg.Replicant('levelCode');
+	
+	
+	
+	
+	levelNameReplicant.on('change', (newValue, oldValue) => {
+		// The value of the Replicant has changed somewhere in NodeCG,
+		// this could be another dashboard panel, a server initiated change,
+		// or the doing of another user accessing your dashboard panel.
+		levelName.value = newValue;
+	});
+	
+	creatorReplicant.on('change', (newValue, oldValue) => {
+		creator.value = newValue;
+	});
+
+	levelCodeReplicant.on('change', (newValue2, oldValue2) => {
+		levelCode.value = newValue2;
+	});
+	
+	submitButton.onclick = () => {
+		// A Replicant can be modified by modifying its `value`.
+		levelNameReplicant.value = levelName.value;
+		levelCodeReplicant.value = levelCode.value;
+		creatorReplicant.value = creator.value;
+	};
+</script>
+</html>
