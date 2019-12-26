@@ -48,8 +48,20 @@
 	const creatorReplicant = nodecg.Replicant('creator');
 	const levelCodeReplicant = nodecg.Replicant('levelCode');
 	
+	//Allows Enter to be pressed to update
+	var enter = function(event) {
+	// Number 13 is the "Enter" key on the keyboard
+		if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+			event.preventDefault();
+    // Trigger the button element with a click
+			document.getElementById("submitButton").click();
+		}
+	}
 	
-	
+	document.getElementById("levelName").addEventListener("keyup",enter, false);
+	document.getElementById("creator").addEventListener("keyup",enter, false);
+	document.getElementById("levelCode").addEventListener("keyup",enter, false);
 	
 	levelNameReplicant.on('change', (newValue, oldValue) => {
 		// The value of the Replicant has changed somewhere in NodeCG,
